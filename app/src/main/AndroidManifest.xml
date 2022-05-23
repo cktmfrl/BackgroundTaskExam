@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.backgroundtaskexam">
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -33,7 +34,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".CountdownActivity"
+            android:exported="true"
+            android:parentActivityName=".AysncTaskMainActivity">
+
+            <!-- 4.0(아이스크림샌드위치, API Level 14,15)과 그 이하 버전을 위한 부모액티비티 메타데이터 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".AysncTaskMainActivity" />
+        </activity>
+
+        <activity
+            android:name=".ServiceMainActivity"
             android:exported="true"
             android:parentActivityName=".AysncTaskMainActivity">
 

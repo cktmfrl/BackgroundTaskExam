@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 30 // 32
 
     defaultConfig {
         applicationId "com.example.backgroundtaskexam"
         minSdk 21
-        targetSdk 32
+        targetSdk 30 // 32
         versionCode 1
         versionName "1.0"
 
@@ -29,9 +29,21 @@ android {
 
 dependencies {
 
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:2.0.4'
     testImplementation 'junit:junit:4.13.2'
+    //noinspection GradleCompatible
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    
+    // implementation 'androidx.work:work-runtime:2.7.1' // 사용 안함..
+    // 아래 에러 대응하기 위해 추가했으나 현재 앱은 androidX를 사용하지 않아, AndroidManifest.xml에서 exported 옵션값을 제거해보기로 함.
+    // 참고로 아래 에러가 발생한 이유는 Android 12버전(31)에서 exported 옵션을 사용하고 PendingIntent를 호출했기 때문이라고 하는데...
+    // 참고-1 : https://keelim.tistory.com/entry/%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-SDK-31-%EB%8C%80%EC%9D%91-%EC%82%AC%ED%95%AD-%EC%A4%91-PendingIntent-%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC
+    // 참고-2 : https://textbox.tistory.com/entry/android-%EC%8B%A4%ED%96%89%EC%98%A4%EB%A5%98-version-31%EC%97%90%EC%84%9C-%EC%95%B1-%EC%8B%A4%ED%96%89%EC%8B%9C-%EC%98%A4%EB%A5%98
+    // 에러 내용 : Caused by: java.lang.IllegalArgumentException: com.example.backgroundtaskexam: Targeting S+ (version 31 and above) requires
+    // that one of FLAG_IMMUTABLE or FLAG_MUTABLE be specified when creating a PendingIntent.
+    // 실제 해결(2022.5.23.) : 1) compileSdk, targetSdk를 각각 32 -> 30으로 변경
+    //                       2) AndroidManifest.xml에 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> 추가
 }

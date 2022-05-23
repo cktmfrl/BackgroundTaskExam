@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class CountdownActivity extends AppCompatActivity {
 
     private TextView mTextView;
     private CountTask mTask;
@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_coutdown);
         mTextView = findViewById(R.id.count);
 
-        getSupportActionBar().setTitle("CountDown 화면");
+        getSupportActionBar().setTitle("AsyncTask를 이용한 카운트다운");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // Up Navigatioin 표기
     }
 
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void clear(View view) {
         mTask.cancel(true);
-        Toast.makeText(MainActivity.this, "취소", Toast.LENGTH_SHORT).show();
+        Toast.makeText(CountdownActivity.this, "취소", Toast.LENGTH_SHORT).show();
         mTextView.setText("0");
     }
 

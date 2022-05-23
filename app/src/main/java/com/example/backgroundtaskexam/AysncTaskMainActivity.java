@@ -37,21 +37,12 @@ public class AysncTaskMainActivity extends AppCompatActivity {
         });
     }
 
-    // 499p
-    public void onStartService(View view) {
-        Intent intent = new Intent(this, MyService.class);
-        startService(intent);
+    public void moveToCountDown(View view) {
+        startActivity(new Intent(this, CountdownActivity.class));
     }
 
-    public void onStopService(View view) {
-        Intent intent = new Intent(this, MyService.class);
-        stopService(intent);// 서비스 내에서는 stopSelf() 를 사용해도 됨(502p)
-    }
-
-    // 505p
-    public void onStartIntentService(View view) {
-        Intent intent = new Intent(this, MyIntentService.class);
-        startService(intent);
+    public void moveToServiceExam(View view) {
+        startActivity(new Intent(this, ServiceMainActivity.class));
     }
 
     public void download(View view) {
@@ -73,10 +64,6 @@ public class AysncTaskMainActivity extends AppCompatActivity {
 
         mDownloadTask = new DownloadTask();
         mDownloadTask.execute();
-    }
-
-    public void moveToCountDown(View view) {
-        startActivity(new Intent(this, MainActivity.class));
     }
 
     class DownloadTask extends AsyncTask<Void, Integer, Void> { // Param, Process, Result
